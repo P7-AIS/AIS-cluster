@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+  - ais-worker-hpa.yaml
+
+images:
+  - name: ghcr.io/P7-AIS/ais-worker:main
+    newName: williamwoldum/ais-worker
+    newTag: latest

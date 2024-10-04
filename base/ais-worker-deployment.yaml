@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ais-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ais-worker
+  template:
+    metadata:
+      labels:
+        app: ais-worker
+    spec:
+      containers:
+      - name: ais-worker
+        image: ghcr.io/p7-ais/ais-worker:main
+        imagePullPolicy: Always
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
